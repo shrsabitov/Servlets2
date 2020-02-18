@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
 @WebServlet("/Servlet2")
 public class Servlet2 extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -16,6 +17,8 @@ public class Servlet2 extends HttpServlet {
     //поработать с указанием параметра прямо в адресной строке: http://localhost:8080/Servlet2?numberName=3 и т.д.
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String paramName = request.getParameter(UsefulNotes.numberName);
+
+        response.setContentType("text/html; charset=UTF-8");
         try {
             int i = Integer.parseInt(paramName);
             response.getWriter().print(i);
