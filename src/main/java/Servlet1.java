@@ -13,6 +13,7 @@ public class Servlet1 extends HttpServlet {
 
     }
 
+    //простейший пример, вывести 10 раз "Hello, World!" через response
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws javax.servlet.ServletException, IOException {
         //int number = Integer.parseInt(req.getParameter("number"));
         PrintWriter out = resp.getWriter();
