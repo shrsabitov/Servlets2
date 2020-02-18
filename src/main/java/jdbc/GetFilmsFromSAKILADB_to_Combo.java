@@ -20,7 +20,6 @@ public class GetFilmsFromSAKILADB_to_Combo extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-
         out.println(""
                 + "<form action=GetFilmsFromSAKILADB_to_Combo method=GET>"
                 + "Вывести первые"
@@ -36,15 +35,12 @@ public class GetFilmsFromSAKILADB_to_Combo extends HttpServlet {
                 + "</form>"
                 + "");
 
-
         try {
-
-
             int select1 = Integer.parseInt(request.getParameter("select1"));
             try {
                 try {
-                    Class.forName("com.mysql.jdbc.Driver").newInstance();
-                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "root", "root");
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "root");
                     PreparedStatement p = con.prepareStatement("SELECT title,description FROM film WHERE film_id<?;");
                     p.setInt(1, select1);
                     ResultSet r = p.executeQuery();
