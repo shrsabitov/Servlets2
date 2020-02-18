@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 //простейший пример, вывести 10 раз "Hello, World!" через response
+//обратить внимание на алиас "/basix/servlet5"
 
 @WebServlet("/basix/servlet5")
 public class Servlet4 extends HttpServlet {
