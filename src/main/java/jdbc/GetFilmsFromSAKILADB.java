@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -12,71 +13,61 @@ import java.sql.*;
 @WebServlet("/GetFilmsFromSAKILADB")
 public class GetFilmsFromSAKILADB extends HttpServlet {
 
+    private interface Names {
+        String selectFilmsNumber = "selectFilmsNumber";
+        String connString = "jdbc:mysql://localhost:3306/sakila?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    }
+
+    final int tableBorderWidth = 3;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
+
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = null;
-        try {
-            out = response.getWriter();
+        try (PrintWriter out = response.getWriter()) {
+            out.println(""
+                    + "<form action=GetFilmsFromSAKILADB method=GET>"
+                    + "Вывести первые"
+                    + "<select name=" + Names.selectFilmsNumber + ">"
+                    + "<option>5</option><option>10</option><option>20</option><option>30</option><option>50</option><option>1000</option>"
+                    + "</select> фильмов"
+                    + "<input type=submit name=submitNumber value=OK>"
+                    + "</form>");
+
+            try {
+                int numberOfFilmsToExtract = Integer.parseInt(request.getParameter(Names.selectFilmsNumber));
+                Class.forName("com.mysql.cj.jdbc.Driver");
+
+                try (Connection con = DriverManager.getConnection(Names.connString, "root", "root");
+                     PreparedStatement preparedStatement = con.prepareStatement("SELECT title,description FROM film WHERE film_id<=?;");
+                ) {
+                    preparedStatement.setInt(1, numberOfFilmsToExtract);
+                    ResultSet filmsResultSet = preparedStatement.executeQuery();
+
+                    out.println("<table border=" + tableBorderWidth + " bgcolor=yellow>");
+                    while (filmsResultSet.next()) {
+                        out.println("<tr>");
+                        out.println("<td>");
+                        out.println(filmsResultSet.getString("title"));
+                        out.println("</td>");
+                        out.println("<td>");
+                        out.println(filmsResultSet.getString("description"));
+                        out.println("</td>");
+                        out.println("</tr>");
+                    }
+                    out.println("<table>");
+                    filmsResultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            } catch (NumberFormatException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            out.println("</body>");
+            out.println("</html>");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        out.println(""
-                + "<form action=GetFilmsFromSAKILADB method=GET>"
-                + "Вывести первые"
-                + "<select name=select1>"
-                + "<option>5</option>"
-                + "<option>10</option>"
-                + "<option>20</option>"
-                + "<option>30</option>"
-                + "<option>50</option>"
-                + "<option>1000</option>"
-                + "</select>" + " фильмов"
-                + "<input type=submit name=s1 value=OK>"
-                + "</form>"
-                + "");
-
-
-        int select1 = Integer.parseInt(request.getParameter("select1"));
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "root");
-            PreparedStatement p = con.prepareStatement("SELECT title,description FROM film WHERE film_id<?;");
-            p.setInt(1, select1);
-            ResultSet r = p.executeQuery();
-            out.println("<table border=3 bgcolor=yellow>");
-            while (r.next()) {
-                out.println("<tr>");
-
-                out.println("<td>");
-                out.println(r.getString("title"));
-                out.println("</td>");
-
-                out.println("<td>");
-                out.println(r.getString("description"));
-                out.println("</td>");
-
-                out.println("</tr>");
-            }
-            out.println("<table>");
-
-            r.close();
-            p.close();
-            con.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        out.println("</body>");
-        out.println("</html>");
-
-        out.close();
-
     }
 
     @Override
