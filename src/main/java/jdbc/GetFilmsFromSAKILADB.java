@@ -16,8 +16,10 @@ public class GetFilmsFromSAKILADB extends HttpServlet {
     private interface Names {
         String selectFilmsNumber = "selectFilmsNumber";
         String connString = "jdbc:mysql://localhost:3306/sakila?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        String sqlQuery = "SELECT title,description FROM film WHERE film_id<=?";
+        String login = "root";
+        String pswd="root";
     }
-
     final int tableBorderWidth = 3;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
@@ -37,8 +39,8 @@ public class GetFilmsFromSAKILADB extends HttpServlet {
                 int numberOfFilmsToExtract = Integer.parseInt(request.getParameter(Names.selectFilmsNumber));
                 Class.forName("com.mysql.cj.jdbc.Driver");
 
-                try (Connection con = DriverManager.getConnection(Names.connString, "root", "root");
-                     PreparedStatement preparedStatement = con.prepareStatement("SELECT title,description FROM film WHERE film_id<=?;");
+                try (Connection con = DriverManager.getConnection(Names.connString, Names.login, Names.pswd);
+                     PreparedStatement preparedStatement = con.prepareStatement(Names.sqlQuery);
                 ) {
                     preparedStatement.setInt(1, numberOfFilmsToExtract);
                     ResultSet filmsResultSet = preparedStatement.executeQuery();
