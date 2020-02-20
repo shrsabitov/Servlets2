@@ -18,7 +18,7 @@ public class NonAuthServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.println("Аутентификация не нужна<br><br>);
+        out.println("Аутентификация не нужна<br><br>");
         Enumeration<String> headerNames = request.getHeaderNames();
         while(headerNames.hasMoreElements()) {
             String paramName = (String)headerNames.nextElement();
