@@ -7,4 +7,15 @@
         <auth-method>BASIC</auth-method>
         <realm-name>default</realm-name>
     </login-config>
+    <context-param>
+        <param-name>eName</param-name>
+        <param-value>"EmployeeTestName"</param-value>
+    </context-param>
+    <context-param>
+        <param-name>eName2</param-name>
+        <param-value>"SecondEmployeeTestName"</param-value>
+    </context-param>
+    <listener>
+        <listener-class>listeners.MyServletContextListener</listener-class>
+    </listener>
 </web-app>

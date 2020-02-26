@@ -11,7 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-/* хороший пример
+/*
+хороший пример
 doGet передает информацию в doPost
  */
 @WebServlet("/formgetpost")
