@@ -9,24 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+//считывает из контекста объект Employee и распечатывает его параметры
 @WebServlet("/lisna1")
-//@WebServlet(
-//        value = "/lisna1",
-//        initParams = {
-//                @WebInitParam(name = "email", value = "webmaster@domain.com", description = "Email from webmaster"),
-//                @WebInitParam(name = "phone", value = "xxxx/xx.xx.xx", description = "Phone webmaster")
-//
-//        },
-//        description = "Servlet 3 initialisation parameter annotation example: @WebInitParam")
-
 public class EmployeeListenerServlet extends HttpServlet {
-//    private String email, phone;
-
-//    @Override
-//    public void init(ServletConfig config) throws ServletException {
-//        email = config.getInitParameter("email");
-//        phone = config.getInitParameter("phone");
-//    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -36,8 +22,5 @@ public class EmployeeListenerServlet extends HttpServlet {
         out.println(employee.getName());
         out.println(employee2.getName());
 
-//        out.write("<h2>Servlet 3 inner initialisationparameter annotation example: @WebInitParam</h2>");
-//        out.write("<p><strong>E-mail: </strong>" + email + "</p>");
-//        out.write("<p><strong>Phone: </strong>" + phone + "</p>");
     }
 }

@@ -10,14 +10,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet(
-        value = "/example2",
+        value = "/example",
         initParams = {
                 @WebInitParam(name = "email", value = "webmaster@domain.com", description = "Email from webmaster"),
                 @WebInitParam(name = "phone", value = "xxxx/xx.xx.xx", description = "Phone webmaster")
         },
-        description = "Servlet 3 initialisation parameter annotation example: @WebInitParam")
+        description = "Initialization parameters example annotation: @WebInitParam")
+//пример инициализации параметров сервлета через аннотацию
+// то же самое можно сделать и в web.xml, прописав параметры в <servlet>,
+public class ExampleServlet extends HttpServlet{
 
-public class EmployeeInnerListenerServlet extends HttpServlet {
     private String email, phone;
 
     @Override
@@ -26,11 +28,12 @@ public class EmployeeInnerListenerServlet extends HttpServlet {
         phone = config.getInitParameter("phone");
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.write("<h2>Servlet 3 inner initialisationparameter annotation example: @WebInitParam</h2>");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        PrintWriter out = resp.getWriter();
+        out.write("<h2>Initialization parameters example annotation: @WebInitParam</h2>");
         out.write("<p><strong>E-mail: </strong>" + email + "</p>");
         out.write("<p><strong>Phone: </strong>" + phone + "</p>");
     }
+
 }
