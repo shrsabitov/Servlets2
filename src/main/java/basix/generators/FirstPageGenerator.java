@@ -7,19 +7,14 @@ import java.io.PrintWriter;
 
 public class FirstPageGenerator {
 
-    public static void mainForm(HttpServletRequest request,
-                                HttpServletResponse response, int state) {
+    public static void mainForm(PrintWriter out, int cols) {
 
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out;
-        try {
-            out = response.getWriter();
             out.println("mainForm:");
             out.println("<table border=3>");
 
             for (int i = 0; i < 10; i++) {
                 out.println("<tr>");
-                for (int j = 0; j < state; j++) {
+                for (int j = 0; j < cols; j++) {
                     out.println("<td>");
                     out.println("i*j=" + i * j);
                     out.println("</td>");
@@ -28,12 +23,6 @@ public class FirstPageGenerator {
             }
             out.println("</table>");
 
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } finally {
-
-        }
 
     }
 

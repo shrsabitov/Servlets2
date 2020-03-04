@@ -18,7 +18,7 @@ public class Info extends HttpServlet {
         try {
             out.println("SPECIAL Info Servlet FOR INCLUDING");
         } finally {
-            // out.close();
+            // out.close(); Важно! закомментарить, иначе не будет включено
         }
     }
 

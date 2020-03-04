@@ -14,22 +14,22 @@ public class MyServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out;
-        out = response.getWriter();
-        out.println("Таблица сгенерирована в классе FirstPageGenerator статическим методом <i>mainForm</i><br>"
-                + "Запрос в адресной строке вида: http://localhost:8080/MIR/MyServlet?st=x задает число столбцов таблицы равным x.<br><br>");
 
-        int state=1;
         try{
-            state=Integer.parseInt(request.getParameter("st"));
+            int columns=Integer.parseInt(request.getParameter("columns"));
+
+            try (PrintWriter out = response.getWriter()) {
+                out.println("Таблица сгенерирована в классе FirstPageGenerator статическим методом <i>mainForm</i><br>"
+                        + "Запрос в адресной строке вида: http://localhost:8080/MIR/MyServlet?columns=x задает число столбцов таблицы равным x.<br><br>");
+
+                FirstPageGenerator.mainForm(out, columns);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         catch(NumberFormatException e){
-            System.out.println(e.equals(null));
+            e.printStackTrace();
         }
-
-        FirstPageGenerator.mainForm(request, response, state);
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
