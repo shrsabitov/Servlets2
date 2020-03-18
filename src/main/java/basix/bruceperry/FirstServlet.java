@@ -13,7 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 /*
 хороший пример
-doGet передает информацию в doPost
+переделан с примера Брюса Перри
+используется только один сервлет,
+но за счет использование и GET и POSE
+doGet передает информацию в doPost.
+Получается эффект разделения логики.
  */
 @WebServlet("/formgetpost")
 public class FirstServlet extends HttpServlet {
