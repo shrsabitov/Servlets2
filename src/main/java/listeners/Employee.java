@@ -1,5 +1,6 @@
 package listeners;
 
+// обычный POJO - класс как структура данных
 public class Employee {
     String name;
 
