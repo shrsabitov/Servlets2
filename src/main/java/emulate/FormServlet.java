@@ -42,6 +42,11 @@ public class FormServlet extends HttpServlet {
             /*
             т.е. вот такая штука уже не сработает для передачи рассчитанного значения в bmi.jsp
              response.sendRedirect("bmi.jsp");
+
+             перенаправление vs переадресация
+             dispatcher.forward - перенаправление ТЕКУЩЕГО запроса далее по адресу диспетчера;
+             response.sendRedirect - просто переход на другой ресурс;
+
              */
         } catch (Exception e) {
             //а здесь просто открывается новый ресурс error.jsp с новым своим request-ом, а не унаследованным от bmi.jsp
