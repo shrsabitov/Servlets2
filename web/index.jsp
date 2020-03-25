@@ -11,6 +11,6 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  <a href="bmi.jsp">bmi.jsp</a>
   </body>
 </html>

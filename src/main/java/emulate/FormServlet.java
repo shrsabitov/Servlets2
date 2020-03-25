@@ -36,37 +36,17 @@ public class FormServlet extends HttpServlet {
             response.setHeader("Test", "Success");
             response.setHeader("BMI", String.valueOf(bmi));
 
-            RequestDispatcher dispatcher
-                    = request.getRequestDispatcher("index.jsp");
+            //за счет использования RequestDispatcher request вместе со своими переменными передается далее в bmi.jsp
+            RequestDispatcher dispatcher = request.getRequestDispatcher("bmi.jsp");
             dispatcher.forward(request, response);
+            /*
+            т.е. вот такая штука уже не сработает для передачи рассчитанного значения в bmi.jsp
+             response.sendRedirect("bmi.jsp");
+             */
         } catch (Exception e) {
-            response.sendRedirect("index.jsp");
+            //а здесь просто открывается новый ресурс error.jsp с новым своим request-ом, а не унаследованным от bmi.jsp
+            response.sendRedirect("error.jsp");
         }
-        /*
-
-        Мне нужно чтобы сервлет переправил пользователя на указанную страницу. Есть два пути это сделть.
-req.getRequestDispatcher("/demo/new.jsp").forward(req, resp);
-//или
-       resp.sendRedirect("/demo/new.jsp");
-
-
-В случае редеректа все работает, как задумано, одноко с getRequestDispatcher перехода не происходит. Пользователь остается на странице сервлета.
-        И так, отличия.
-Forward:
-выполняется непосредственно сервлетом
-браузер абсолютно не в курсе, что происходит, и его исходный URL не меняется
-перезагрузка страницы в браузере инициирует запрос на оригинальный URL
-
-
-Redirect:
-состоит из двух шагов, в которых Ваше приложение говорит браузеру получить контент с другого URL, отличного от оригинального URL
-перезагрузка страницы не инициирует запрос по оригинальному URL, а пойдет по URL из redirect
-немного медленнее, т.к. приходится делать 2 запроса вместо одного
-данные оригинального запроса (первого), будут недоступны второму запросу
-
-
-Проще говоря, через forward вы можете вернуть контент с другого ресурса, другую jsp. При этом исходный URL не изменится.
-         */
 
     }
 
