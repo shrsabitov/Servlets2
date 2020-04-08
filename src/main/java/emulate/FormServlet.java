@@ -15,7 +15,7 @@ public class FormServlet extends HttpServlet {
 
     public interface Helper {
         String HEIGHT = "height";
-        String WIDTH = "weight";
+        String WEIGHT = "weight";
 
         //расчет индекса массы тела
         static Double calculateBMI(Double weight, Double height) {
@@ -26,7 +26,7 @@ public class FormServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String height=request.getParameter(HEIGHT);
-        String weight=request.getParameter(WIDTH);
+        String weight=request.getParameter(WEIGHT);
 
         try {
             double bmi = calculateBMI(Double.parseDouble(weight), Double.parseDouble(height));

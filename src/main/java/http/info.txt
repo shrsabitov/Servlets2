@@ -1,11 +1,21 @@
 https://www.thoughtco.com/ajax-2037229
 
 The Purpose of GET and POST
-GET is used as the name implies: to get information. it's intended to be used when you are reading information. Browsers will cache the result from a GET request and if the same GET request is made again, they will display the cached result rather than re-running the entire request.
-This is not a flaw in the browser processing; it's deliberately designed to work that way so as to make GET calls more efficient. A GET call is just retrieving the information; it's not meant to change any information on the server, which is why requesting the data again should return the same results.
-The POST method is for posting or updating information on the server. This type of call is expected to change the data, which is why the results returned from two identical POST calls may very well be completely different from one another. The initial values before the second POST call will be different from the values before the first because the initial call will have updated at least some of those values. A POST call will therefore always obtain the response from the server rather than keep a cached copy of the prior response.
+GET is used as the name implies: to get information. it's intended to be used when you are reading information.
+Browsers will cache the result from a GET request and if the same GET request is made again,
+they will display the cached result rather than re-running the entire request.
+This is not a flaw in the browser processing; it's deliberately designed to work that way so as to make GET calls more efficient.
+A GET call is just retrieving the information; it's not meant to change any information on the server,
+which is why requesting the data again should return the same results.
+The POST method is for posting or updating information on the server.
+This type of call is expected to change the data, which is why the results returned from two identical POST calls
+may very well be completely different from one another.
+The initial values before the second POST call will be different from the values before the first
+because the initial call will have updated at least some of those values.
+A POST call will therefore always obtain the response from the server rather than keep a cached copy of the prior response.
 
 https://stackoverflow.com/questions/16750677/why-are-http-requests-called-get-and-post
 
 Why, when the specifications for HTTP requests were being made, were the names "get" and "post" chosen?
-GET came first - it was the only verb supported in the original HTTP protocol - we can only speculate why POST was chosen. Perhaps because it is evocative of putting something (the post body) into an envelope (the HTTP request) and putting it into a postbox (the HTTP server!)
+GET came first - it was the only verb supported in the original HTTP protocol - we can only speculate why POST was chosen.
+Perhaps because it is evocative of putting something (the post body) into an envelope (the HTTP request) and putting it into a postbox (the HTTP server!)
