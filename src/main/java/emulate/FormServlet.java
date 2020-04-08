@@ -27,7 +27,7 @@ public class FormServlet extends HttpServlet {
 
         String height=request.getParameter(HEIGHT);
         String weight=request.getParameter(WEIGHT);
-
+//
         try {
             double bmi = calculateBMI(Double.parseDouble(weight), Double.parseDouble(height));
             //в отличие от задания аттрибутов через servletContext.setAttribute("emp",employee);

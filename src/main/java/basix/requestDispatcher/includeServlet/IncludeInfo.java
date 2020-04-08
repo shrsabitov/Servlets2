@@ -1,4 +1,4 @@
-package basix.includeServlet;
+package basix.requestDispatcher.includeServlet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

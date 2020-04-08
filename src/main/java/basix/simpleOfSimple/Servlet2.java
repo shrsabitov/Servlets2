@@ -1,4 +1,6 @@
-package basix;
+package basix.simpleOfSimple;
+
+import basix.UsefulNotes;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
