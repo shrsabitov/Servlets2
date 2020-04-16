@@ -27,8 +27,8 @@ public class ServletUploadFile extends HttpServlet {
             String fileName;
             for (Part part : request.getParts()) {
                 if (!((fileName = part.getSubmittedFileName()) == null)) {
-                    part.write(uploadPath + File.separator + fileName);
-                    try (PrintWriter out = response.getWriter()){
+                            part.write(uploadPath + File.separator + fileName);
+                            try (PrintWriter out = response.getWriter()){
 
                         out.println("uploadPath: "+uploadPath);
                         out.println("fileName: "+fileName);
@@ -41,6 +41,33 @@ public class ServletUploadFile extends HttpServlet {
         }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        /*
+        OLD
+
+        ДОПОЛНИТЕЛЬНО ПОСМОТРЕТЬ СТАРУЮ РЕАЛИЗАЦИЮ:
+        СМ. ПАПКУ fileupload/
+        A_ -> B_ -> C_
+
+        SAXPARSER VS JAXB
+        APACHE COMMONS UPLOAD VS REQUEST.GETPARTS
+
+        ---------------
+        NEW
+
+        ЕСТЬ XML ФАЙЛ - КАКОЙ-ТО
+        1) ПОДГРУЗИТЬ ЕГО СМ. SENDPICTURE.JSP -> ServletUploadFile.java - REQUEST.GETPARTS
+        2) РАСПАРСИТЬ, СМ. JAXB
+        2b) ПРОМЕЖУТОЧНУЮ ИНФОРМАЦИЮ ХРАНИТЬ В DTO (В СТАРОЙ ВЕРСИИ ДЛЯ ЭТОГО ИСПОЛЬЗОВАЛСЯ TableiNFO)
+        3) ВЫВЕСТИ ЧАСТЬ РАСПАРСЕННОЙ ИНФОРМАЦИИ НА СТРАНИЦУ - ОБЫЧНЫМ OUT.PRINTLN
+
+        ----------------------
+
+
+
+
+
+         */
 
     }
 }
