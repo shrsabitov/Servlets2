@@ -16,7 +16,6 @@ public class FormServlet extends HttpServlet {
     public interface Helper {
         String HEIGHT = "height";
         String WEIGHT = "weight";
-
         //расчет индекса массы тела
         static Double calculateBMI(Double weight, Double height) {
             return weight / (height * height);
@@ -24,38 +23,34 @@ public class FormServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String height=request.getParameter(HEIGHT);
         String weight=request.getParameter(WEIGHT);
-//
         try {
             double bmi = calculateBMI(Double.parseDouble(weight), Double.parseDouble(height));
             //в отличие от задания аттрибутов через servletContext.setAttribute("emp",employee);
             //это аттрибут не для контекста сервлетов проекта, а только для данного request
+            //значит его можно передать дальше по цепочке через RequestDispatcher
             request.setAttribute("bmi", bmi);
             response.setHeader("Test", "Success");
             response.setHeader("BMI", String.valueOf(bmi));
 
             //за счет использования RequestDispatcher request вместе со своими переменными передается далее в bmi.jsp
+            //при этом! в адресной строке остается /calculateServlet, хотя реально все перенаправлено в bmi.jsp
+            //и клиент видит bmi.jsp
             RequestDispatcher dispatcher = request.getRequestDispatcher("bmi.jsp");
             dispatcher.forward(request, response);
             /*
-            т.е. вот такая штука уже не сработает для передачи рассчитанного значения в bmi.jsp
-             response.sendRedirect("bmi.jsp");
+            Если же использовать response.sendRedirect("bmi.jsp") то это просто вызовет bmi.jsp и не получится
+            передать рассчитанное значение bmi.
 
              перенаправление vs переадресация
-             dispatcher.forward - перенаправление ТЕКУЩЕГО запроса далее по адресу диспетчера;
+             dispatcher.forward - перенаправление ТЕКУЩЕГО запроса далее по адресу диспетчера с сохранением текущего адреса;
              response.sendRedirect - просто переход на другой ресурс;
-
              */
         } catch (Exception e) {
             //а здесь просто открывается новый ресурс error.jsp с новым своим request-ом, а не унаследованным от bmi.jsp
-            response.sendRedirect("error.jsp");
+            response.setStatus(303);
         }
-
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }

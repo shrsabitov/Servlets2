@@ -1,4 +1,4 @@
-package listeners;
+package listeners.config_context;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
@@ -18,7 +18,7 @@ import java.io.PrintWriter;
         description = "Initialization parameters example annotation: @WebInitParam")
 //пример инициализации параметров сервлета через аннотацию
 // то же самое можно сделать и в web.xml, прописав параметры в <servlet>,
-public class ExampleServlet extends HttpServlet{
+public class MyServletConfigInitParamReader extends HttpServlet{
 
     private String email, phone;
 

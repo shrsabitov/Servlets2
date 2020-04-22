@@ -12,17 +12,21 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @ServletSecurity(
-        value=@HttpConstraint(rolesAllowed = {"auth"}),
+        value=@HttpConstraint(rolesAllowed = {"auth"}),//роль прописана в настройках Tomcat
         httpMethodConstraints= {
-                @HttpMethodConstraint(value = "GET", rolesAllowed = {"auth"}),
+                @HttpMethodConstraint(value = "GET", rolesAllowed = {"auth"}),//для каких ролей возможен GET
                 @HttpMethodConstraint(value="POST")
         }
 )
 @WebServlet("/secured")
 public class AuthentityServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        out.println("Аутентификация пройдена");
+        try {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("Аутентификация пройдена");
+        } catch (Exception e) {
+            System.out.println("!!!!!!!!");
+        }
     }
 }

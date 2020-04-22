@@ -12,5 +12,6 @@
   </head>
   <body>
   <a href="bmi.jsp">bmi.jsp</a>
+  <a href="/AuthentityServlet">AuthentityServlet</a>
   </body>
 </html>

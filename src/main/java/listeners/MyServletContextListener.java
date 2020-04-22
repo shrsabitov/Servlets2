@@ -10,7 +10,7 @@ public class MyServletContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext servletContext = sce.getServletContext();
         String name = servletContext.getInitParameter("eName");
-        Employee employee = new Employee(name);
+        EmployeeDTO employee = new EmployeeDTO(name);
         servletContext.setAttribute("emp",employee);
     }
 }
