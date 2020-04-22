@@ -13,5 +13,6 @@
   <body>
   <a href="bmi.jsp">bmi.jsp</a>
   <a href="/AuthentityServlet">AuthentityServlet</a>
+  <a href="/admin.html">FilterAuthentification</a>
   </body>
 </html>

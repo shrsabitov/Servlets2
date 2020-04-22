@@ -8,12 +8,12 @@ import javax.servlet.annotation.WebListener;
 @WebListener //за счет аннотации MyServletContextListenerAnno не надо прописывать в web.xml
 //делает то же, что и MyServletContextListener, только за счет аннотаций
 //т.е. создает нового Employee и передает его как атрибут в контекст
-public class MyServletContextListenerAnno implements ServletContextListener {
+public class EmployeeContextListenerAnno implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext servletContext = sce.getServletContext();
-        String name = servletContext.getInitParameter("eName2");
+        String name = servletContext.getInitParameter("secondEmployeesName");
         EmployeeDTO employee = new EmployeeDTO(name);
-        servletContext.setAttribute("emp2",employee);
+        servletContext.setAttribute("secondEmployee",employee);
     }
 
 //    public void contextDestroyed(ServletContextEvent sce) {

@@ -17,8 +17,8 @@ public class EmployeeContextReader extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        EmployeeDTO employee = (EmployeeDTO) getServletContext().getAttribute("emp");
-        EmployeeDTO employee2 = (EmployeeDTO) getServletContext().getAttribute("emp2");
+        EmployeeDTO employee = (EmployeeDTO) getServletContext().getAttribute("firstEmployee");
+        EmployeeDTO employee2 = (EmployeeDTO) getServletContext().getAttribute("secondEmployee");
         out.println(employee.getName());
         out.println(employee2.getName());
 

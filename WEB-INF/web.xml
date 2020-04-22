@@ -8,14 +8,14 @@
         <realm-name>default</realm-name>
     </login-config>
     <context-param>
-        <param-name>eName</param-name>
+        <param-name>firstEmployeesName</param-name>
         <param-value>"EmployeeTestName"</param-value>
     </context-param>
     <context-param>
-        <param-name>eName2</param-name>
+        <param-name>secondEmployeesName</param-name>
         <param-value>"SecondEmployeeTestName"</param-value>
     </context-param>
     <listener>
-        <listener-class>listeners.MyServletContextListener</listener-class>
+        <listener-class>listeners.EmployeeContextListener</listener-class>
     </listener>
 </web-app>

@@ -5,12 +5,12 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 //добавляет нового Employee в общую среду (контекст)
-public class MyServletContextListener implements ServletContextListener {
+public class EmployeeContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext servletContext = sce.getServletContext();
-        String name = servletContext.getInitParameter("eName");
+        String name = servletContext.getInitParameter("firstEmployeesName");
         EmployeeDTO employee = new EmployeeDTO(name);
-        servletContext.setAttribute("emp",employee);
+        servletContext.setAttribute("firstEmployee",employee);
     }
 }
