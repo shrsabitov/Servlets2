@@ -49,7 +49,7 @@ public class AuthFilter implements Filter {
                         throw new UnsupportedOperationException("Don't call this!");
                     }
                 }
-
+*
                 И соответствующий фильтр, где с помощью обертки создаем новый риспонс. Иначе пришлось бы слишком много
                 переопределять, если напрямую HttpServletResponse response=new HttpServletResponse ... :
 
