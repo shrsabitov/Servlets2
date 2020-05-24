@@ -3,8 +3,6 @@ package secure.filters.auth;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponseWrapper;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -15,6 +13,7 @@ import java.io.PrintWriter;
 
 @WebFilter("/admin")
 public class AuthFilter implements Filter {
+
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         String password = servletRequest.getParameter("password");
@@ -53,6 +52,7 @@ public class AuthFilter implements Filter {
 
                 И соответствующий фильтр, где с помощью обертки создаем новый риспонс. Иначе пришлось бы слишком много
                 переопределять, если напрямую HttpServletResponse response=new HttpServletResponse ... :
+
 
                 class DisallowFlushFilter implements Filter {
                     public void doFilter(ServletRequest request, ServletResponse response,

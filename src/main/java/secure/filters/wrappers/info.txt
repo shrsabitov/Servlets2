@@ -1,0 +1,2 @@
+We can use Servlet wrappers to wrap request and response.
+Wrapper provides a pattern where we enhance functionality of existing classes.
