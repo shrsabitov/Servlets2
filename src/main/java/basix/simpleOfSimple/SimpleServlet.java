@@ -1,4 +1,4 @@
-package basix;
+package basix.simpleOfSimple;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

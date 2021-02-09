@@ -1,5 +1,7 @@
 package basix.table;
 
+import org.apache.commons.logging.Log;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,43 +9,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet("/B")
 public class B extends HttpServlet {
-
-    protected void processRequest(HttpServletRequest request,
-                                  HttpServletResponse response) {
-
+    private static final Logger LOGGER = Logger.getLogger( B.class.getName() );
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out;
-
-        int row = 0, col = 0;
-
         try {
-            row = Integer.parseInt(request.getParameter("rows"));
-            col = Integer.parseInt(request.getParameter("columns"));
-        } catch (NumberFormatException e) {
-            System.out.println("Задать числа в качестве строк и столбцов:");
-        }
-        try {
-            out = response.getWriter();
-            out.println("" +
-                    "Table: строк " + row + " столбцов " + col + getServletInfo().toString() + "\n" +
-                    "<font name=tahoma size=6 bgcolor=White>" +
-                    "<table border=2 bgcolor=yellow>" +
-                    "");
-            for (int i = 0; i < row; i++) {
-                out.println("<tr>");
-                for (int j = 0; j < col; j++) {
-                    out.println("" +
-                            "<td>i*j=" + i * j + "</td>" +
-                            "");
+            PrintWriter out = response.getWriter();
+            try {
+                int row = Integer.parseInt(request.getParameter("rows"));
+                int col = Integer.parseInt(request.getParameter("columns"));
+                out.println("" +
+                        "Table: строк " + row + " столбцов " + col + getServletInfo().toString() + "\n" +
+                        "<font name=tahoma size=6 bgcolor=White>" +
+                        "<table border=2 bgcolor=yellow>" +
+                        "");
+                for (int i = 0; i < row; i++) {
+                    out.println("<tr>");
+                    for (int j = 0; j < col; j++) {
+                        out.println("" +
+                                "<td>i*j=" + i * j + "</td>" +
+                                "");
+                    }
+                    out.println("</tr>");
                 }
-                out.println("</tr>");
+                out.println("</table>");
+            } catch (NumberFormatException e) {
+                LOGGER.log(Level.SEVERE,"Задать числа в качестве строк и столбцов:", e);
             }
-            out.println("</table>");
         } catch (IOException e) {
             e.printStackTrace();
+
         }
 
     }

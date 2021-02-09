@@ -1,10 +1,6 @@
 package basix.simpleOfSimple;
 
-import basix.UsefulNotes;
-
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +13,11 @@ import java.io.IOException;
 
 @WebServlet("/servlet2")
 public class Servlet2 extends HttpServlet {
+
+    public interface UsefulNotes {
+        String numberName="numberName";
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }

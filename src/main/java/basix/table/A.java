@@ -17,7 +17,7 @@ public class A extends HttpServlet {
 
         try {
             PrintWriter out = response.getWriter();
-            out.println("<form action=B>"
+            out.println("<form action=B method=GET>"
                     + "<input type=text name=rows value=\"Строки\"><br>"
                     + "<input type=text name=columns value=\"Столбцы\">"
                     + "<input type=submit name=s1 value=Ok>"
